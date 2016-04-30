@@ -12,13 +12,13 @@ evaluators = {"brazil":["brazil", "india", "argentina", "paraguay", "united king
 
 def sentiment_analysis():
     sid = SentimentIntensityAnalyzer()
-    
+
     for country in countries:
         for query in queries:
             for evaluator in evaluators[country]:
                 f = open(country + "/" + query + "/suggestions_" + query + "_" + evaluator + ".csv", 'r')
                 g = open(country + "/" + query + "/suggestions_" + query + "_" + evaluator + "_sentiments.csv", 'w')
-    
+
                 for record in f:
                     sentence = record.split(",")[1]
                     ss = sid.polarity_scores(sentence)
@@ -27,6 +27,5 @@ def sentiment_analysis():
                     g.write(record)
 
 
-        
+
 sentiment_analysis()
-    
